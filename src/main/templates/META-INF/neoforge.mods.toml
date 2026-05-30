@@ -17,6 +17,9 @@ versionRange = "[21.1.100,)"
 ordering = "NONE"
 side = "BOTH"
 
+[[mixins]]
+config = "yucca.mixins.json"
+
 [[accessTransformers]]
 file = "META-INF/accesstransformer.cfg"
 

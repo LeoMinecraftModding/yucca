@@ -94,7 +94,7 @@ public class DumpModelCommand {
 		Map<ModelLayerLocation, LayerDefinition> roots = modelSet.roots;
 
 		if (roots == null || roots.isEmpty()) {
-			source.sendFailure(Component.literal("No model layer definitions available"));
+			source.sendFailure(Component.translatable("yucca.command.dump_model.no_definitions"));
 			return 0;
 		}
 
@@ -106,12 +106,12 @@ public class DumpModelCommand {
 		} else {
 			ModelLayerLocation loc = parseModelLayerLocation(target);
 			if (loc == null) {
-				source.sendFailure(Component.literal("Invalid format. Use 'modid:model_path#layer'"));
+				source.sendFailure(Component.translatable("yucca.command.dump_model.invalid_format"));
 				return 0;
 			}
 			LayerDefinition def = roots.get(loc);
 			if (def == null) {
-				source.sendFailure(Component.literal("Unknown model layer: " + target));
+				source.sendFailure(Component.translatable("yucca.command.dump_model.unknown_layer", target));
 				return 0;
 			}
 			toExport.add(new AbstractMap.SimpleEntry<>(loc, def));
@@ -185,9 +185,9 @@ public class DumpModelCommand {
 
 		if (exported > 0) {
 			int finalExported = exported;
-			source.sendSuccess(() -> Component.literal("Exported " + finalExported + " model(s) to yucca/model_dump/"), false);
+			source.sendSuccess(() -> Component.translatable("yucca.command.dump_model.exported", finalExported), false);
 		} else {
-			source.sendFailure(Component.literal("No models exported. Check log for errors."));
+			source.sendFailure(Component.translatable("yucca.command.dump_model.no_export"));
 		}
 
 		return exported;
