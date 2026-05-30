@@ -1,0 +1,5 @@
+{
+  "yucca.command.dump_model.done": "Exported %d model(s) to %s",
+  "yucca.command.dump_model.single_done": "Exported model to %s",
+  "yucca.command.dump_model.failed": "Failed to export model: %s"
+}
