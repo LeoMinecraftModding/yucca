@@ -1,26 +1,49 @@
-Installation information
-=======
+# Yucca
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided
-by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+A Minecraft modding development assistance tool for NeoForge 1.21.1.  
+Exports entity models, textures, and animations from the running game into Blockbench-compatible `.bbmodel` files.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is
-either IntelliJ IDEA or Eclipse.
+## Build
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything
-{this does not affect your code} and then start the process again.
+```bash
+./gradlew build
+```
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+Requires JDK 21.
 
-Additional Resources:
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+## Usage
+
+Run the mod in a development environment:
+
+```bash
+./gradlew runClient
+```
+
+In-game, use the command:
+
+```
+/yucca dump_model <include_textures> <include_animations> <entity_type> <target>
+```
+
+| Argument | Type | Description |
+|---|---|---|
+| `include_textures` | `bool` | Whether to embed texture data as Base64 in the output |
+| `include_animations` | `bool` | Whether to scan and export entity animations |
+| `entity_type` | `EntityType` | Entity type used to locate its renderer for entity animations (1.19+) and textures, e.g. `minecraft:warden` (auto-suggested) |
+| `target` | `String` | `namespace:path#layer` for a single model layer, or `"all"` to export everything (auto-suggested) |
+
+### Examples
+
+```
+/yucca dump_model false false minecraft:warden all
+/yucca dump_model true true minecraft:warden minecraft:warden#main
+```
+
+### Output
+
+`.bbmodel` files are written to `<gameDir>/yucca/model_dump/<namespace>/<path>/<layer>.bbmodel`.  
+Open them directly in [Blockbench](https://www.blockbench.net/).
+
+## License
+
+MIT
