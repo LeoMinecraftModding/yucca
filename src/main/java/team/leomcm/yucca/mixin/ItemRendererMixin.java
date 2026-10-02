@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import team.leomcm.yucca.ItemTransformsManager;
+import team.leomcm.yucca.transforms.ItemTransformsManager;
 
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
@@ -25,7 +25,7 @@ public abstract class ItemRendererMixin {
 			remap = false
 		)
 	)
-	private BakedModel wrapHandleCameraTransforms(
+	private BakedModel yucca$wrapHandleCameraTransforms(
 		PoseStack poseStack, BakedModel model, ItemDisplayContext displayContext, boolean leftHand,
 		Operation<BakedModel> original,
 		@Local(argsOnly = true, index = 1) ItemStack itemStack

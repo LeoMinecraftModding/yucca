@@ -15,12 +15,12 @@ import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import org.lwjgl.glfw.GLFW;
-import team.leomcm.yucca.command.DumpModelCommand;
-import team.leomcm.yucca.command.ItemTransformsCommand;
-import team.leomcm.yucca.screen.ItemTransformsScreen;
+import team.leomcm.yucca.dump.DumpModelCommand;
+import team.leomcm.yucca.transforms.ItemTransformsCommand;
+import team.leomcm.yucca.transforms.ItemTransformsScreen;
 
-@Mod(value = Yucca.MODID, dist = Dist.CLIENT)
-@EventBusSubscriber(modid = Yucca.MODID, value = Dist.CLIENT)
+@Mod(value = Yucca.ID, dist = Dist.CLIENT)
+@EventBusSubscriber(modid = Yucca.ID, value = Dist.CLIENT)
 public class YuccaClient {
 
 	public static final KeyMapping TOGGLE_TRANSFORMS = new KeyMapping(
